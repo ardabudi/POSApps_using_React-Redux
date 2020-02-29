@@ -7,10 +7,9 @@ class Products extends Component {
     super(props)
     this.state = {
       products: [],
-      makanan: "nav-link",
-      minuman: "nav-link",
+      Food: "nav-link",
+      Drink: "nav-link",
       all_class: "nav-link active",
-      // productId: '',
       name: '',
       description: "",
       image: '',
@@ -20,36 +19,22 @@ class Products extends Component {
       realCategory: '',
       formStatus: 'Add',
       productIdSelected: null,
+      activeCategory: '',
       searchName: '',
-      idProduct: ''
     }
   }
-
-  onClickHandler = product => {
-    console.log(product.id);
-    this.setState({
-      idProduct: product.id,
-      name: product.name,
-      description: product.description,
-      category: product.id_category,
-      price: product.price,
-      stock: product.stock,
-      productIdSelected: product.id,
-      formStatus: "Edit"
-    });
-  };
   
   // When nav clicked
   onClickMenu = (event) => {
     event.preventDefault()
     this.setState({
       all_class: 'nav-link',
-      makanan: 'nav-link',
-      minuman: 'nav-link',
+      Food: 'nav-link',
+      Drink: 'nav-link',
       [event.target.name]: 'nav-link active',
-      // activeCategory: event.target.id
+      activeCategory: event.target.id
     });
-    // if (event.target.id === '') this.setState({ activeCategory: '' })
+    if (event.target.id === '') this.setState({ activeCategory: '' })
     axios
       .get(`http://localhost:8001/product/?category=${event.target.id}`)
       .then(res => {
@@ -64,8 +49,8 @@ class Products extends Component {
   onChangeSearch = (event) => {
     this.setState({
       all_class: "nav-link active",
-      makanan: "nav-link",
-      minuman: "nav-link",
+      Food: "nav-link",
+      Drink: "nav-link",
       searchName: event.target.value
     })
     axios
@@ -73,7 +58,6 @@ class Products extends Component {
       .then(res => {
         this.setState({
           products: res.data.result,
-          // totalPages: res.data.totalPages
         })
       })
       .catch(err => {
@@ -121,23 +105,6 @@ class Products extends Component {
   })
   };
 
-  // Edit Data..
-  patchData = (formData) => {
-    const options = {
-      method: "PATCH",
-      body: formData
-    };
-    fetch(
-      `http://localhost:8001/product/${this.state.idProduct}`,
-      options
-    ).then(res => {
-      console.log(res, "Data Succes updated");
-      alert("data success updates");
-      this.componentDidMount();
-      // this.setState({ isDisabled: false })
-    });
-  };
-
   // Add Data
   postData = (formData) => {
     axios
@@ -145,6 +112,22 @@ class Products extends Component {
     .then(res => {
       console.log(res, "Data has been added");
       alert("Data has been Added..");
+      this.componentDidMount();
+    });
+  };
+
+  // Edit Data..
+  patchData = (formData) => {
+    const options = {
+      method: "PATCH",
+      body: formData
+    };
+    fetch(
+      `http://localhost:8001/product/${this.state.productIdSelected}`,
+      options
+    ).then(res => {
+      console.log(res, "Data Succes updated");
+      alert("data success updates");
       this.componentDidMount();
     });
   };
@@ -170,8 +153,9 @@ class Products extends Component {
       this.setState({ category: 2 })
     }
     this.setState({
-      image: '',
       name: product.name,
+      description: product.description,
+      image: '',
       price: product.price,
       stock: product.stock,
       productIdSelected: product.id,
@@ -211,7 +195,6 @@ class Products extends Component {
         console.log(res)
           this.setState({
               products: res.data.result,
-              // totalPages: res.data.totalPages
           })
       })
       .catch(err => {
@@ -240,10 +223,9 @@ class Products extends Component {
                 <h3 className="add" onClick={this.addButtonHandler}>
                 <button type="button" data-toggle="modal"
               data-target="#add" style={{backgroundColor: 'transparent', border:'0px solid black'}}>
-                  <i className="material-icons">add_box</i>
+                  <i style={{color: 'blue'}} className="fas fa-plus"></i>
                 </button>
                 </h3>
-
                 <a className="navbar-brand" style={{marginLeft: '10%'}} id="" name="all_class" onClick={this.onClickMenu} href="/"><b>CoffeShop</b></a>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -251,30 +233,11 @@ class Products extends Component {
                             <Link className={this.state.all_class} id="" name="all_class" onClick={this.onClickMenu} to="/">All</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={this.state.makanan} id="makanan" name="makanan" onClick={this.onClickMenu} to="?category=makanan">Food</Link>
+                            <Link className={this.state.Food} id="Food" name="makanan" onClick={this.onClickMenu} to="?category=Food">Food</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={this.state.minuman} id="minuman" name="minuman" onClick={this.onClickMenu} to="?category=minuman">Drink</Link>
+                            <Link className={this.state.Drink} id="Drink" name="minuman" onClick={this.onClickMenu} to="?category=drink">Drink</Link>
                         </li>
-
-                        {/* <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sort
-                            </Link>
-                            <div className="dropdown-menu" >
-                                <Link className="dropdown-item" onClick={this.onSort} id="ASC" to="#">Ascending</Link>
-                                <Link className="dropdown-item" onClick={this.onSort} id="DESC" to="#">Descending</Link>
-                            </div>
-                        </li> */}
-                        {/* <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                By
-                            </Link>
-                            <div className="dropdown-menu" >
-                                <Link className="dropdown-item" onClick={this.onBy} id="name" to="#">Name</Link>
-                                <Link className="dropdown-item" onClick={this.onBy} id="price" to="#">Price</Link>
-                            </div>
-                        </li> */}
                         <li className="nav-item">
                             <Link className="nav-link a" to="/login" id="" name="all_class" onClick={this.onLogout}>Logout</Link>
                         </li>
@@ -295,13 +258,20 @@ class Products extends Component {
                     <div className="card-body">
                       <div style={{ float: 'left', marginLeft: '-10px'}}>
                         <p className="card-text" style={{ marginTop: '-15px' }}>{product.name}</p>
-                        <h6 className="card-title" style={{ marginTop: '-15px', fontWeight: 'bolder' }}>
+                        <h6 className="card-title" style={{ marginTop: '-15px' }}>
                           Rp. {product.price}
                         </h6>
                       </div>
-                      <div style={{ float: 'right', marginTop: '-10px' }}>
-                        <button onClick={() => this.editButtonHandler(product)} className="card-link btn btn-small btn-outline-primary" data-toggle="modal" data-target="#edit">Edit</button>
-                        <button onClick={() => this.deleteButtonHandler(product.id)} className="card-link btn btn-small btn-outline-danger">Delete</button>
+                      <div style={{ marginTop: '-6px' }}>
+
+                        <button onClick={() => this.editButtonHandler(product)} style={{backgroundColor: 'transparent', border:'0px', marginLeft: '90px'}} data-toggle="modal" data-target="#edit">
+                         <i style={{color: 'green'}} className="fas fa-edit fa-2x"></i>
+                         </button>
+
+                        <button onClick={() => this.deleteButtonHandler(product.id)} style={{backgroundColor: 'transparent', border:'0px', marginLeft: '13px'}}>
+                        <i style={{color: 'red'}} className="fas fa-trash-alt fa-2x"></i>
+                        </button>
+
                       </div>
                     </div>
                   </div>
