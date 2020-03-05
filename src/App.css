@@ -5,87 +5,56 @@
   padding: 0;
 }
 
-/* .overlay .card{
-  width: 20rem;
-  z-index: -1;
-  position: fixed;
-  top: 3px;
-  bottom: 7px;
-  right: -350px;
-  border-radius: 10px;
-  opacity:0;
-  text-align: left;
-  transition: 1s;
-  box-shadow: -2px 4px 4px 1px rgba(0, 0, 0, 0.5);
-} */
-
-.products .card img{
+.card1{
   border-radius: 3px;
-  box-shadow: -3px 3px 6px 3px rgba(0, 0, 0, 0.1);
-  height: 230px;
+  box-shadow: -8px 8px 8px 7px rgba(0, 0, 0, 0.2);
+  height: 280px;
+  background-color: rgb(228, 222, 214);
+  margin-bottom: 23px;
 }
 
-/* .add{
-  position: absolute;
-  display: block;
-  z-index: 999;
-  bottom: 3%;
-  right: 2%;
-} */
+.card2{
+  height: 200px;
+}
 
 @media (min-width: 768px) { 
-  body{
-    overflow: hidden;
-  }
   nav.navbar{
-    box-shadow:0px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.1);
   }
-  
-  /* .nav-link:hover::after{
-    content: '';
-    display: block;
-    border-bottom: 3px solid blue;
-    margin: 0 auto -3px;
-  }
-
-  .nav-link.active::after{
-    content: '';
-    display: block;
-    border-bottom: 3px solid blue;
-    margin: 0 auto -3px;
-  } */
 
   .products{
+    overflow-y: scroll;
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 1%;
     position: relative;
     height: 92vh !important;
-    overflow-y: auto;
-    padding-top: 2%;
-    padding-left: 3%;
-    padding-right: 2%;
-    /* padding-bottom: 5%; */
-    background: #F8F8FF;
+    background-color: rgb(202, 198, 195)
   }
 
-  nav.navbar{
-    margin-right: -1.7%;
+  .ManP{
+    background-color: rgb(238, 233, 227);
   }
 
-  .products .card{
-    border: none;
-    background: transparent;
+  .ManC{
+    background-color: rgb(233, 233, 233);
   }
 
-  .navbar-nav{
-    padding-right: 3%;
+  .TableMP{
+    box-shadow: 2px 8px 8px 7px rgba(8, 8, 8, 0.3);
   }
-} 
 
+  .TableMC{
+    box-shadow: -8px 8px 8px 7px rgba(0, 8, 8, 0.2);
+    margin-bottom: 50px;
+  }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .nav-link{
+    color: black;
   }
-  to {
-    transform: rotate(360deg);
+
+  .login{
+    background-image: url('./assets/img/background.png');
+    height: 400px;
   }
-} */
+}
