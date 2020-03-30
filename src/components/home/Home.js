@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Card from './CardP'
 import Navbar from '../layouts/Navbar'
-// import Cart from './Cart'
+import Cart from '../layouts/Cart'
 
 class Home extends Component {
   componentDidMount () {
@@ -13,13 +13,13 @@ class Home extends Component {
   render () {
     return (
       <>
-        <Navbar />
         <div className='row'>
-          <div className='col-md-8'>
+          <div className='col-8' style={{paddingRight: '0'}}>
+            <Navbar />
             <Card />
           </div>
-          <div className='col-md-4'>
-            {/* <Cart /> */}
+          <div className='col-4' style={{paddingRight: '0', paddingLeft: '0'}}>
+            <Cart />
           </div>
         </div>
       </>

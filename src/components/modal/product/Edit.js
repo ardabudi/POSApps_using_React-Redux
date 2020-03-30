@@ -96,12 +96,6 @@ class Edit extends Component {
                             <Form.Control type="text" name="stock" onChange={this.onChangeValue} value={this.state.stock} />
                         </Form.Group>
                         <Form.Group>
-                        {/* <label className="col-form-label">IDCategory:</label>
-                        <select className="form-control" required name="id_category" onChange={this.onChangeValue}>
-                            <option selected disabled>Choose category</option>
-                            <option value={1}>Food</option>
-                            <option value={2}>Drink</option>
-                        </select> */}
                             <Form.Label>CATEGORY</Form.Label>
                             <Form.Control type="text" placeholder="Enter Category" defaultValue={"DEFAULT"} name="id_category" onChange={this.onChangeValue} value={this.state.id_category} as="select">
                                 <option value="DEFAULT" disabled>Choose..</option>

@@ -2,6 +2,7 @@ import React, {Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import '../../App.css'
 
 import { connect } from 'react-redux'
 import { getCategory } from '../redux/actions/category'
@@ -114,24 +115,23 @@ class Category extends Component {
                 </button>
                 <span>
                 <Link to='/' >
-                <i style={{color:'Black',fontSize:'20px'}} className='fa fa-home'> CoffeShop</i>
+                <i style={{color:'Black',fontSize:'20px'}} className='fa fa-home'> CoffeStreet</i>
                 </Link>
                 </span>
                 <div className='collapse navbar-collapse' id='navbarTogglerDemo01'>
-                    <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
-                    <li style={{ marginLeft: '', marginRight: '20px' }}>
-                        <Link to='/product'>Products</Link>
-                    </li>
-                    </ul>
-                    <form className='form-inline my-3 my-lg-0' style={{ marginLeft: '' }}>
+                    <form className='form-inline my-3 my-lg-0 ml-auto'>
                         <input className='form-control mr-sm-2' 
                         type='search'
                         placeholder='search..'
                         style={{boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.2)'}}
                         onChange={this.onChangeSearch}
-                        />
-                        <Link to="/login" onClick={this.logout} className='nav-link'>Logout </Link>
-                        
+                    />
+                    <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
+                    <li style={{ marginLeft: '', marginRight: '20px' }}>
+                        <Link to='/product'>Products</Link>
+                    </li>
+                    </ul>
+                        <Link to="/login" onClick={this.logout} className='nav-link'><i style={{ fontSize: '17px' }} className="fas fa-sign-out-alt"> Logout</i></Link>
                     </form>
                 </div>
                 </div>
@@ -145,9 +145,7 @@ class Category extends Component {
                         <Button variant="primary fas fa-plus" onClick={this.onShowAdd}> Add Category</Button>
                     </Col>
                 </Row>
-                {/* <Row>
                     
-                </Row> */}
                 <Row>
                 <Table striped bordered hover className='TableMC'>
                     <thead>

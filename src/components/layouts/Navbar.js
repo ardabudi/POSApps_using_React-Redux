@@ -1,9 +1,77 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-
+import { getProducts } from '../redux/actions/product'
 class LayoutNavbar extends Component {
+  state = {
+    activePage: 1,
+    searchName: '',
+    activeCategory: '',
+    sortBy: 'id',
+    orderBy: 'ASC',
+  }
+
+  onClickMenu = (e) => {
+    // console.log(e.target.id)
+    this.setState({ activeCategory: e.target.id })
+    if (e.target.id === '') this.setState({ activeCategory: '' })
+    const data = {
+      activePage: 1,
+      activeCategory: e.target.id,
+      searchName: '',
+      sortBy: 'id',
+      orderBy: 'ASC'
+    }
+    this.props.dispatch(getProducts(data))
+  }
+
+  onOrderBy = (e) => {
+    this.setState({ orderBy: e.target.id })
+    const data = {
+      activePage: 1,
+      activeCategory: this.state.activeCategory,
+      searchName: '',
+      sortBy: this.state.sortBy,
+      orderBy: e.target.id,
+    }
+    this.props.dispatch(getProducts(data))
+  }
+
+  onSortBy = (e) => {
+    this.setState({ sortBy: e.target.id })
+    const data = {
+      activePage: 1,
+      activeCategory: this.state.activeCategory,
+      searchName: '',
+      sortBy: e.target.id,
+      orderBy: this.state.orderBy,
+    }
+    this.props.dispatch(getProducts(data))
+  }
+
+  onChangeSearch = (e) => {
+    this.setState({ serachName: e.target.value })
+    const data = {
+      activePage: 1,
+      activeCategory: '',
+      searchName: e.target.value,
+      sortBy: this.state.sortBy,
+      orderBy: this.state.orderBy
+    }
+    this.props.dispatch(getProducts(data))
+  }
+
+  getProducts() {
+    const data = {}
+    this.props.dispatch(getProducts(data))
+  }
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
   logout = () => {
     localStorage.removeItem('user-id')
     localStorage.removeItem('token')
@@ -11,56 +79,56 @@ class LayoutNavbar extends Component {
     localStorage.removeItem('status')
   }
 
-  render () {
-    return (
-      <Row>
-        <Col sm={8}>
-          <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: 'white', height: '60px' }}>
-            <div className='container'>
-              <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false' aria-label='Toggle navigation'>
-                <span className='navbar-toggler-icon' />
-              </button>
-              <span>
-                <Link to='/'>
-                  <i style={{ color: 'Black', fontSize: '20px' }} className='fa fa-home'> AbsCoffeShop</i>
-                </Link>
-              </span>
+  render() {
+    const Check = () => {
+      if (localStorage.getItem('status') === 'admin') {
+        return (
+          <Nav className="mr-auto">
+            <NavDropdown style={{ color: 'black' }} title="Management" id="basic-nav-dropdown">
+              <NavDropdown.Item>
+                <Link className='navlink' to="/product">Product</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item><Link className='navlink' to="/category">Category</Link>
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        )
+      } else {
+        return (
+          <div></div>
+        )
+      }
+    }
 
-            </div>
-            <div className='collapse navbar-collapse' id='navbarTogglerDemo01'>
-              <div class='btn-group dropright'>
-                <button type='button' className='fas fa-sort' style={{ fontSize: '1.75em', color: 'Black', border: 'none', backgroundColor: 'transparent', marginLeft: '20px' }} data-target='#sort' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' />
-                <div class='dropdown-menu'>
-                  <li>
-                    <Link to='/product'><span className='fa fa-home' /> Products</Link>
-                  </li>
-                  <li>
-                    <Link to='/category'><span className='fa fa-home' /> Category</Link>
-                  </li>
-                </div>
-                <form className='form-inline my-3 my-lg-0' style={{ marginLeft: '' }}>
-                  <Link className='nav-link' to="/login" onClick={this.logout}>Logout </Link>
-                </form>
-              </div>
-            </div>
-          </nav>
-        </Col>
-        <Col sm={4}>
-          <nav style={{ marginLeft: '-25px' }} className='navbar sticky-top navbar-expand-lg navbar-light'>
-            <h6 style={{ height: '34px', marginLeft: '150px' }}>Cart
-              <span className='badge badge-primary badge-pill'>0</span>
-            </h6>
-          </nav>
-        </Col>
-      </Row>
+    return (
+      <Navbar bg="white" sticky='top' expand="lg">
+        <Navbar.Brand>
+          <Link to='/'>
+            <i style={{ color: 'Black', fontSize: '20px', marginLeft: '10px' }} className='fa fa-home'> CoffeStreet</i>
+          </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+
+          <Check />
+          
+          <Form inline className="ml-auto">
+            <Link to="/login" onClick={this.logout} className='nav-link'><i style={{ fontSize: '17px' }} className="fas fa-sign-out-alt"> Logout</i></Link>
+          </Form>
+
+          <Form inline>
+            <FormControl type="Search" placeholder="Search" className="mr-sm-2" onChange={this.onChangeSearch} />
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
     )
   }
 }
 
 const navbarStateToProps = (state) => {
   return {
-    products: state.products.products
+    products: state.products.products,
   }
 }
 
-export default connect(navbarStateToProps)(LayoutNavbar)
+export default withRouter(connect(navbarStateToProps)(LayoutNavbar));

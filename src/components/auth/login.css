@@ -1,0 +1,50 @@
+/* @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800'); */
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+/* h1, */
+h2,
+h3,
+h4,
+/* h5, */
+/* h6, */
+label {
+    font-weight: 600;
+    /* font-family: 'Fira Sans', sans-serif; */
+    font-family: 'Dosis', sans-serif;
+}
+
+.cardLogin {
+    /* background: #1C8EF9 !important; */
+    background: url('../../assets//img/backgroundcf.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    min-height: 100vh;
+    min-width: 100vh;
+}
+
+.card-content {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+    height: 410px;
+    margin: 50px ;
+    padding: 50px 20px;
+    width: 329px;
+    position: absolute;
+    text-align: center;
+    /* align-items:  */
+    /* background-image: url('./assets/img/background.png'); */
+}
+
+.underline-title {
+    background: -webkit-linear-gradient(right, #ffecd2, #ce6c11);
+    height: 2px;
+    margin: 3px auto 20px auto;
+    width: 89px;
+}
+
+.btnlgn {
+    background: -webkit-linear-gradient(right, #d8be67, #d1602b);
+    margin-top: 25px;
+    width: 150px;
+    border-radius: 10px
+}

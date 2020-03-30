@@ -1,60 +1,66 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
-*{
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
+
+* {
   font-family: 'AirbnbCereal', 'Open Sans';
-  margin: 0;
-  padding: 0;
 }
 
-.card1{
-  border-radius: 3px;
-  box-shadow: -8px 8px 8px 7px rgba(0, 0, 0, 0.2);
+.body {
+  overflow-x: hidden;
+}
+
+.nameBrand {
+  font-family: 'Dosis', sans-serif;
+}
+
+.card1 {
+  /* border-radius: 30px 50px 40px 50px; */
+  box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, 0.1);
   height: 280px;
-  background-color: rgb(228, 222, 214);
+  background: transparent;
   margin-bottom: 23px;
 }
 
-.card2{
-  height: 200px;
+.card2 {
+  height: 60%
 }
 
-@media (min-width: 768px) { 
-  nav.navbar{
+@media (min-width: 768px) {
+  nav.navbar {
     box-shadow: 10px 4px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .products{
-    overflow-y: scroll;
-    padding-top: 3%;
+  .products {
+    overflow-y: auto;
     padding-left: 3%;
-    padding-right: 1%;
-    position: relative;
+    padding-right: 2%;
     height: 92vh !important;
-    background-color: rgb(202, 198, 195)
+    background-color: rgb(231, 231, 231)
   }
 
-  .ManP{
+  .ManP {
     background-color: rgb(238, 233, 227);
   }
 
-  .ManC{
+  .ManC {
     background-color: rgb(233, 233, 233);
   }
 
-  .TableMP{
+  .TableMP {
     box-shadow: 2px 8px 8px 7px rgba(8, 8, 8, 0.3);
   }
 
-  .TableMC{
+  .TableMC {
     box-shadow: -8px 8px 8px 7px rgba(0, 8, 8, 0.2);
     margin-bottom: 50px;
   }
 
-  .nav-link{
-    color: black;
+  .nav-link {
+    color: rgb(102, 101, 101);
   }
 
-  .login{
-    background-image: url('./assets/img/background.png');
-    height: 400px;
-  }
+  .navlink{
+    color: rgb(0, 0, 0);
+}
 }

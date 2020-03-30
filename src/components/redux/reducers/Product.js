@@ -16,7 +16,7 @@ const Product = (state = initialState, action) => {
         ...state
       }
     case 'GET_PRODUCTS_FULFILLED':
-      // console.log('haloo', action.payload.data)
+      console.log('haloo', action.payload.data)
       return {
         ...state,
         products: action.payload.data.result,

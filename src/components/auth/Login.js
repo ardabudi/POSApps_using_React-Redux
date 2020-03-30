@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './login.css'
 
-class Login extends Component{
-    constructor(props){
+class Login extends Component {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -11,14 +12,14 @@ class Login extends Component{
         }
     }
 
-    componentDidMount(){
-        if(localStorage.getItem('token')){
+    componentDidMount() {
+        if (localStorage.getItem('token')) {
             this.props.history.push('/');
         }
     }
 
     onChange = (e) => {
-        this.setState({ [e.target.name] : e.target.value })
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     onSubmit = (e) => {
@@ -38,26 +39,29 @@ class Login extends Component{
             })
     }
 
-    render(){
-        return(
-            <div className="container login">
-                <h4 style={{ marginTop: '10px' }}>Login</h4>
-                <div className="row justify-content-md-center">
-                    <div className="col-md-8">
-                        <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
-                                <label>Email</label>
-                                <input type="text" className="form-control" placeholder="Enter email" value={this.state.name} name="email" onChange={this.onChange}/>
+    render() {
+        return (
+            <div className="cardLogin">
+                <div className="card-content">
+                        <h3>LOGIN</h3>
+                        <div className="underline-title"></div>
+                        <div className="row justify-content-center">
+                            <div className="col-10">
+                                <form onSubmit={this.onSubmit}>
+                                    <div className="form-group">
+                                        <label style={{fontSize: '18px'}} >Email</label>
+                                        <input type="text" className="form-control" placeholder="Enter email" value={this.state.name} name="email" onChange={this.onChange} />
+                                    </div>
+                                    <div className="form-group">
+                                        <label style={{fontSize: '18px'}}>Password</label>
+                                        <input type="password" className="form-control" placeholder="Enter password" value={this.state.password} name="password" onChange={this.onChange} />
+                                    </div>
+                                    <button type="submit" className="btn btn-warning btnlgn">Login</button>
+                                </form>
                             </div>
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input type="password" className="form-control" placeholder="Enter password" value={this.state.password}  name="password" onChange={this.onChange} />
-                            </div>
-                            <button type="submit" className="btn btn-primary">Login</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }
