@@ -42,6 +42,7 @@ const Cart = (state = initialState, action) => {
       }
 
     case 'DELETE_FROM_CART':
+      // console.log('hello', action)
       const newProductAfterDelete = state.cart.filter(
         product => product.productId !== parseInt(action.payload.id)
       )

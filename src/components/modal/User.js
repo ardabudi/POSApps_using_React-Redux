@@ -3,36 +3,34 @@ import { withRouter } from 'react-router-dom'
 import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import '../../App.css'
-
 import { connect } from 'react-redux'
-import { getCategory } from '../redux/actions/category'
+import { getUser } from '../redux/actions/user'
+import UserItem from './user/UserItem'
+import Add from './user/Add'
+import Edit from '../modal/user/Edit'
+import Delete from '../modal/user/Delete'
 
-import CategoryItem from './category/CategoryItem'
-import Add from './category/Add'
-import Edit from '../modal/category/Edit'
-import Delete from '../modal/category/Delete'
-
-class Category extends Component {
+class User extends Component {
     state = {
         searchName: '',
         showAdd: false,
         showEdit: false,
         showDelete: false,
-        selectCategoryEdit: null,
-        selectCategoryDelete: null
+        selectUserEdit: null,
+        selectUserDelete: null
     }
 
     onChangeSearch = (e) => {
-        this.setState({ serachName: e.target.value })
+        this.setState({ searchName: e.target.value })
         const data = {
             searchName: e.target.value
         }
-        this.props.dispatch(getCategory(data))
+        this.props.dispatch(getUser(data))
     }
 
-    getCategory() {
+    getUser() {
         const data = {}
-        this.props.dispatch(getCategory(data))
+        this.props.dispatch(getUser(data))
     }
 
     componentDidMount() {
@@ -40,9 +38,8 @@ class Category extends Component {
             alert('Sorry, you are not authorized as an administrator')
             this.props.history.push('/')
         }
-        this.getCategory();
+        this.getUser();
     }
-
 
     onShowAdd = (event) => {
         this.setState({
@@ -68,9 +65,9 @@ class Category extends Component {
         })
     }
 
-    onSelectCategoryEdit = (category) => {
+    onSelectUserEdit = (user) => {
         this.setState({
-            selectCategoryEdit: category,
+            selectUserEdit: user,
             showEdit: true
         })
     }
@@ -87,10 +84,10 @@ class Category extends Component {
         })
     }
 
-    onSelectCategoryDelete = (category) => {
-        // console.log(category)
+    onSelectUserDelete = (user) => {
+        // console.log(user)
         this.setState({
-            selectCategoryDelete: category,
+            selectUserDelete: user,
             showDelete: true
         })
     }
@@ -103,11 +100,11 @@ class Category extends Component {
     }
 
     render() {
-        // console.log(this.props.categorys)
-        const { categorys } = this.props;
-        const itemCategory = categorys.map((category, index) => <CategoryItem key={index} category={category} onSelectCategoryEdit={this.onSelectCategoryEdit} onSelectCategoryDelete={this.onSelectCategoryDelete} />);
+        // console.log(this.props.user)
+        const { user } = this.props;
+        const itemUser = user.map((user, index) => <UserItem key={index} user={user} onSelectUserEdit={this.onSelectUserEdit} onSelectUserDelete={this.onSelectUserDelete} />);
         return (
-            <div className='ManC'>
+            <div className='ManUser'>
                 <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: 'white' }}>
                     <div className='container'>
                         <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarTogglerDemo01' aria-controls='navbarTogglerDemo01' aria-expanded='false' aria-label='Toggle navigation'>
@@ -123,7 +120,7 @@ class Category extends Component {
                                 <Link class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management</Link>
                                 <div class="dropdown-menu">
                                     <Link class="dropdown-item" to="/product">Product</Link>
-                                    <Link class="dropdown-item" to="/user">User</Link>
+                                    <Link class="dropdown-item" to="/category">Category</Link>
                                 </div>
                             </div>
                             <form className='form-inline my-3 my-lg-0 ml-auto'>
@@ -141,10 +138,10 @@ class Category extends Component {
                 <Container style={{ marginTop: "20px" }}>
                     <Row style={{ marginBottom: "10px" }}>
                         <Col sm={10}>
-                            <h4>Management categorys</h4>
+                            <h4>Management Users</h4>
                         </Col>
                         <Col sm={2}>
-                            <Button variant="primary fas fa-plus" onClick={this.onShowAdd}> Add Category</Button>
+                            <Button variant="primary fas fa-plus" onClick={this.onShowAdd}> Add User</Button>
                         </Col>
                     </Row>
 
@@ -154,18 +151,20 @@ class Category extends Component {
                                 <tr style={{ backgroundColor: 'silver' }}>
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {itemCategory}
+                                {itemUser}
                             </tbody>
                         </Table>
                     </Row>
 
                     <Add show={this.state.showAdd} onHide={this.onCloseAdd} />
-                    <Edit show={this.state.showEdit} onHide={this.onCloseEdit} category={this.state.selectCategoryEdit} />
-                    <Delete show={this.state.showDelete} onHide={this.onCloseDelete} category={this.state.selectCategoryDelete} />
+                    <Edit show={this.state.showEdit} onHide={this.onCloseEdit} user={this.state.selectUserEdit} />
+                    <Delete show={this.state.showDelete} onHide={this.onCloseDelete} user={this.state.selectUserDelete} />
                 </Container>
             </div>
         )
@@ -174,8 +173,8 @@ class Category extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        categorys: state.categorys.categorys
+        user: state.user.user
     }
 }
 
-export default withRouter(connect(mapStateToProps)(Category));
+export default withRouter(connect(mapStateToProps)(User));

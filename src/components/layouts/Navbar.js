@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { Row, Col, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { getProducts } from '../redux/actions/product'
 class LayoutNavbar extends Component {
@@ -83,15 +83,14 @@ class LayoutNavbar extends Component {
     const Check = () => {
       if (localStorage.getItem('status') === 'admin') {
         return (
-          <Nav className="mr-auto">
-            <NavDropdown style={{ color: 'black' }} title="Management" id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <Link className='navlink' to="/product">Product</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item><Link className='navlink' to="/category">Category</Link>
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+          <div class="nav-item dropdown">
+            <Link class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management</Link>
+            <div class="dropdown-menu">
+              <Link class="dropdown-item" to="/product">Product</Link>
+              <Link class="dropdown-item" to="/category">Category</Link>
+              <Link class="dropdown-item" to="/user">User</Link>
+            </div>
+          </div>
         )
       } else {
         return (
@@ -111,7 +110,7 @@ class LayoutNavbar extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
 
           <Check />
-          
+
           <Form inline className="ml-auto">
             <Link to="/login" onClick={this.logout} className='nav-link'><i style={{ fontSize: '17px' }} className="fas fa-sign-out-alt"> Logout</i></Link>
           </Form>

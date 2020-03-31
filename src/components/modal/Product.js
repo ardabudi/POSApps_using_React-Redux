@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { Form, Container, Row, Col, Button, Table } from 'react-bootstrap'
+import { Container, Row, Col, Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
@@ -175,23 +175,23 @@ class Product extends Component {
                         </span>
 
                         <div className='collapse navbar-collapse' id='navbarTogglerDemo01'>
+                            <div class="nav-item dropdown">
+                                <Link class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management</Link>
+                                <div class="dropdown-menu">
+                                    <Link class="dropdown-item" to="/category">Category</Link>
+                                    <Link class="dropdown-item" to="/user">User</Link>
+                                </div>
+                            </div>
+
                             <form className="form-inline my-3 my-lg-0 ml-auto">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.onChangeSearch} />
-                            <ul className='navbar-nav ml-auto mt-2 mt-lg-0'>
-                                <li style={{ marginLeft: '', marginRight: '20px' }}>
-                                    <Link to='/product'>Products</Link>
-                                </li>
-                                <li style={{ marginLeft: '', marginRight: '20px' }}>
-                                    <Link to='/category'>Categorys</Link>
-                                </li>
-                            </ul>
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search" onChange={this.onChangeSearch} />
                             </form>
-                                <Link to="/login" onClick={this.logout} className='nav-link'><i style={{ fontSize: '17px' }} className="fas fa-sign-out-alt"> Logout</i></Link>
+                            <Link to="/login" onClick={this.logout} className='nav-link'><i style={{ fontSize: '17px' }} className="fas fa-sign-out-alt"> Logout</i></Link>
                         </div>
                     </div>
                 </nav>
 
-                <ul style={{marginLeft: '10%'}} class="nav nav-product">
+                <ul style={{ marginLeft: '10%' }} class="nav nav-product">
                     <li class="nav-item">
                         <Link class="nav-link" id='' onClick={this.onClickMenu}>All</Link>
                     </li>
@@ -229,7 +229,7 @@ class Product extends Component {
                         <Table striped bordered hover className='TableMP'>
                             <thead>
                                 <tr style={{ backgroundColor: 'silver' }}>
-                                    <th scope="col">#</th>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Image</th>

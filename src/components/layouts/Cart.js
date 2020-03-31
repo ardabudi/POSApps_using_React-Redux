@@ -70,6 +70,7 @@ class Cart extends Component {
   };
 
   render() {
+    console.log("iniiiiii", this.props.cart)
     const CheckoutButton = () => {
       if (this.state.isDisabled === true) {
         return (
@@ -103,13 +104,10 @@ class Cart extends Component {
     const ViewCart = () => {
       if (this.props.productsInCart.length < 1) {
         return (
-          // <>
-
-          <div style={{textAlign:'center'}}>
-            <img src={logo} style={{width: '150px', marginTop: '60px' }}/>
-            <h5 style={{marginTop: '16px'}}>Your cart is empty..</h5>
-            </div>
-          // </>
+          <div style={{ textAlign: 'center' }}>
+            <img src={logo} style={{ width: '150px', marginTop: '60px' }} />
+            <h5 style={{ marginTop: '16px' }}>Your cart is empty..</h5>
+          </div>
         );
 
       } else {
@@ -196,12 +194,12 @@ class Cart extends Component {
 
     return (
       <Fragment>
-        <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: 'white' }}>
-          <h6 style={{ height: '32px', marginLeft: '160px' }}>Cart
-            <span className='badge badge-primary badge-pill'>0</span>
+        <nav className='navbar sticky-top navbar-expand-lg navbar-light' style={{ background: 'white'}}>
+          <h6 className='m-auto pt-2' style={{ height: '40px', fontSize: '17px', fontWeight: 'bold', fontFamily: 'Dosis' }}>Cart
+            <span className='badge badge-primary badge-pill ml-1'>{this.props.cart}</span>
           </h6>
         </nav>
-        <div style={{padding: '20px'}}>
+        <div style={{ padding: '20px' }}>
           <ViewCart />
         </div>
 
@@ -279,6 +277,7 @@ class Cart extends Component {
 const mapStateToProps = (state) => {
   // console.log(state)
   return {
+    cart: state.cart.totalPurchase,
     productsInCart: state.cart.cart
   }
 }

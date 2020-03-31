@@ -8,6 +8,7 @@ import Home from './components/home/Home'
 import Login from './components/auth/Login'
 import Product from './components/modal/Product'
 import Category from './components/modal/Category'
+import User from './components/modal/User'
 
 function App () {
   return (
@@ -17,6 +18,7 @@ function App () {
         <Route path='/login' component={Login} />
         <Route path='/product' component={Product} />
         <Route path='/category' component={Category} />
+        <Route path='/user' component={User} />
       </Router>
     </Provider>
   )
