@@ -45,6 +45,9 @@
   <img src="https://img.shields.io/badge/Download%20on%20the-Google%20Drive-blue.svg?style=popout&logo=google-drive"/>
 </a>
 
+# Visit : http://coffestreet.s3-website-us-east-1.amazonaws.com/
+<h4>http://coffestreet.s3-website-us-east-1.amazonaws.com/</h4>
+
 ## Related Project (Backend)
 * [`Posapps_backend`](https://github.com/ardabudi/Posapps_backend.git)
 
@@ -54,8 +57,7 @@
     <tr>
       <td align="center">
         <a href="https://github.com/ardabudi">
-          <img width="100" src="https://user-images.githubusercontent.com/42709965/78534573-d4050800-7814-11ea-97c2-62c3ac1f1b0d.JPG" alt="Falih Naufal"><br/>
-          ![IMG_5389 - Copy](https://user-images.githubusercontent.com/42709965/78534573-d4050800-7814-11ea-97c2-62c3ac1f1b0d.JPG)
+          <img width="100" src="https://user-images.githubusercontent.com/42709965/78534573-d4050800-7814-11ea-97c2-62c3ac1f1b0d.JPG" alt="Arda Budi"><br/>
           <sub><b>Arda Budi</b></sub>
         </a>
       </td>
