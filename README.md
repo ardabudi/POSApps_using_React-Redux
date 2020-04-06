@@ -35,10 +35,6 @@
 
 
 ## Release
-<a href="http://coffestreet.epizy.com/">
-  <img src="https://img.shields.io/badge/Download%20on%20the-Google%20Drive-blue.svg?style=popout&logo=google-drive"/>
-</a>
-
 <h4>http://coffestreet.s3-website-us-east-1.amazonaws.com/</h4>
 
 ## Related Project (Backend)
