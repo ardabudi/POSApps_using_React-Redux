@@ -29,12 +29,6 @@
 5. Type `npm start` for run this app.
 
 ## Screenshots
-<div align="center">
-    <img width="500" src="https://user-images.githubusercontent.com/42709965/78533897-dfa3ff00-7813-11ea-8562-c67f33f348f1.png">   
-    <img width="500" src="https://user-images.githubusercontent.com/42709965/78533903-e468b300-7813-11ea-9f50-8dfe8a9bbcfd.png">
-    <img width="500" src="https://user-images.githubusercontent.com/42709965/78533926-eb8fc100-7813-11ea-90e1-f3826a90c8f2.png">
-</div>
-
 ![screencapture-localhost-3000-login-2020-04-02-10_14_16](https://user-images.githubusercontent.com/42709965/78533897-dfa3ff00-7813-11ea-8562-c67f33f348f1.png)
 ![screencapture-localhost-3000-2020-04-02-10_13_36](https://user-images.githubusercontent.com/42709965/78533903-e468b300-7813-11ea-9f50-8dfe8a9bbcfd.png)
 ![screencapture-localhost-3000-product-2020-04-02-10_16_27](https://user-images.githubusercontent.com/42709965/78533926-eb8fc100-7813-11ea-90e1-f3826a90c8f2.png)
@@ -45,7 +39,6 @@
   <img src="https://img.shields.io/badge/Download%20on%20the-Google%20Drive-blue.svg?style=popout&logo=google-drive"/>
 </a>
 
-# Visit : http://coffestreet.s3-website-us-east-1.amazonaws.com/
 <h4>http://coffestreet.s3-website-us-east-1.amazonaws.com/</h4>
 
 ## Related Project (Backend)
